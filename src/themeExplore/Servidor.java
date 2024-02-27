@@ -6,14 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Servidor {
+    
 
     public Map<String, String> temas;
+    
 
     public ServerSocket soServer;
 
@@ -24,9 +24,11 @@ public class Servidor {
             System.out.println("Shutiting down");
             stop();
         }));
+        
+        
     }
-
-    public void agregarNuevoTema(String tema, String descripcion) {
+    
+    private void agregarNuevoTema(String tema, String descripcion) {
         temas.put(tema, descripcion);
     }
 
