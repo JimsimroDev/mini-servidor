@@ -1,5 +1,6 @@
 package themeExplore;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Cliente extends javax.swing.JFrame {
 
@@ -17,16 +19,16 @@ public class Cliente extends javax.swing.JFrame {
 
     public Cliente(Servidor servidor) {
         initComponents();
-        this.servidor = servidor; // Guardar la referencia al servidor
-    }
-
-    public Cliente() {
-        initComponents();
         setIconImage(getIconImage());
-    }
+        btnCrearTemaNuevo.putClientProperty( "JButton.buttonType", "roundRect" );
+        this.servidor = servidor; // Guardar la referencia al servidor
+        
+        
+    }        
+    
 
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("/img/logo.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/logo.png"));
         return retValue;
     }
 
@@ -46,6 +48,7 @@ public class Cliente extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        btnMinimizar1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtTema = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -105,17 +108,11 @@ public class Cliente extends javax.swing.JFrame {
         jLabel16.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 4, 0, new java.awt.Color(204, 0, 204)));
 
         btnMinimizar.setBackground(new java.awt.Color(243, 243, 245));
-        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Expand_Arrow_32px.png"))); // NOI18N
+        btnMinimizar.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        btnMinimizar.setForeground(new java.awt.Color(102, 102, 102));
+        btnMinimizar.setText("▢");
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnMinimizarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnMinimizarMouseExited(evt);
-            }
-        });
         btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMinimizarActionPerformed(evt);
@@ -123,7 +120,10 @@ public class Cliente extends javax.swing.JFrame {
         });
 
         btnCerrar.setBackground(new java.awt.Color(243, 243, 245));
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Multiply_32px.png"))); // NOI18N
+        btnCerrar.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(102, 102, 102));
+        btnCerrar.setText("⨉");
+        btnCerrar.setBorder(null);
         btnCerrar.setBorderPainted(false);
         btnCerrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,6 +140,18 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
 
+        btnMinimizar1.setBackground(new java.awt.Color(243, 243, 245));
+        btnMinimizar1.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
+        btnMinimizar1.setForeground(new java.awt.Color(102, 102, 102));
+        btnMinimizar1.setText("–");
+        btnMinimizar1.setBorderPainted(false);
+        btnMinimizar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnMinimizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -152,7 +164,9 @@ public class Cliente extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
-                        .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMinimizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +191,9 @@ public class Cliente extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMinimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMinimizar1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +216,6 @@ public class Cliente extends javax.swing.JFrame {
 
         txtTema.setBackground(new java.awt.Color(220, 221, 223));
         txtTema.setFont(new java.awt.Font("Segoe UI Symbol", 0, 18)); // NOI18N
-        txtTema.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         txtDescripcionNuevo.setBackground(new java.awt.Color(220, 221, 223));
         txtDescripcionNuevo.setColumns(20);
@@ -208,6 +223,7 @@ public class Cliente extends javax.swing.JFrame {
         jScrollPane3.setViewportView(txtDescripcionNuevo);
 
         btnCrearTemaNuevo.setBackground(new java.awt.Color(220, 221, 223));
+        btnCrearTemaNuevo.setForeground(new java.awt.Color(102, 102, 102));
         btnCrearTemaNuevo.setText("Crear Nuevo Tema");
         btnCrearTemaNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCrearTemaNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -226,14 +242,6 @@ public class Cliente extends javax.swing.JFrame {
         btnBuscar.setBorderPainted(false);
         btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.setFocusPainted(false);
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseExited(evt);
-            }
-        });
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -245,8 +253,10 @@ public class Cliente extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane2.setViewportView(txtDescripcion);
 
+        lblDesc.setForeground(new java.awt.Color(102, 102, 102));
         lblDesc.setText("Descripcion");
 
+        lblNuevo.setForeground(new java.awt.Color(102, 102, 102));
         lblNuevo.setText("Nuevo tema");
 
         txtNuevo.setBackground(new java.awt.Color(220, 221, 223));
@@ -305,9 +315,9 @@ public class Cliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3))
-                .addGap(6, 6, 6)
-                .addComponent(btnCrearTemaNuevo)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCrearTemaNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -398,26 +408,10 @@ public class Cliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearTemaNuevoActionPerformed
 
-    private void btnBuscarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseEntered
-        btnBuscar.setBackground(new Color(243, 243, 245));
-    }//GEN-LAST:event_btnBuscarMouseEntered
-
-    private void btnBuscarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseExited
-        btnBuscar.setBackground(new Color(220, 221, 223));
-    }//GEN-LAST:event_btnBuscarMouseExited
-
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         setExtendedState(MAXIMIZED_BOTH);
         //setExtendedState(NORMAL);
     }//GEN-LAST:event_btnMinimizarActionPerformed
-
-    private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMinimizarMouseExited
-
-    private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMinimizarMouseEntered
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
@@ -425,14 +419,25 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseExited
-        btnCerrar.setBackground(new Color(220, 221, 223));
+        btnCerrar.setBackground(new Color(243,243,245));
     }//GEN-LAST:event_btnCerrarMouseExited
 
     private void btnCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseEntered
         btnCerrar.setBackground(Color.red);
     }//GEN-LAST:event_btnCerrarMouseEntered
 
+    private void btnMinimizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizar1ActionPerformed
+        setExtendedState(ICONIFIED);
+    }//GEN-LAST:event_btnMinimizar1ActionPerformed
+
     public static void main(String args[]) throws Exception {
+        
+        try {
+
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (Exception e) {
+            System.out.println("Look and ferr erro!");
+        }
 
         Servidor servidor = new Servidor();
         Thread serverThread = new Thread(servidor::run);
@@ -450,6 +455,7 @@ public class Cliente extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnCrearTemaNuevo;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnMinimizar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
